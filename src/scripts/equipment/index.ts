@@ -1,4 +1,4 @@
-import { weaponEquipType, defenseEquipType } from "../../interfaces/";
+import { weaponEquipType, defenseEquipType } from "../../interfaces";
 
 const weapons: weaponEquipType[] = [];
 

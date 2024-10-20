@@ -1,5 +1,4 @@
 //Equipments
-
 export interface weaponEquipType {
   name: string;
   damage: number;
@@ -11,7 +10,6 @@ export interface defenseEquipType {
 }
 
 // Characters
-
 export interface charType {
   name: string;
   health: number;
@@ -26,7 +24,6 @@ export interface mainCharType extends charType {
 }
 
 // Locations
-
 export interface locationType {
   name: string;
   menu: { name: string; action: () => void; text: string }[];
