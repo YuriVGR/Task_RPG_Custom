@@ -1,6 +1,35 @@
 import { charType, mainCharType } from "../../interfaces";
 
-const enemies: charType[] = [];
+const enemies: charType[] = [
+  {
+    name: "Monstro-floresta-X",
+    health: 7,
+    mana: 0,
+    atk: 2,
+    critChance: 0,
+  },
+  {
+    name: "Monstro-floresta-Y",
+    health: 5,
+    mana: 0,
+    atk: 3,
+    critChance: 0,
+  },
+  {
+    name: "Monstro-Dungeon-X",
+    health: 5,
+    mana: 0,
+    atk: 2,
+    critChance: 0,
+  },
+  {
+    name: "Monstro-Dungeon-Y",
+    health: 5,
+    mana: 0,
+    atk: 2,
+    critChance: 0,
+  },
+];
 
 const allies: mainCharType[] = [];
 

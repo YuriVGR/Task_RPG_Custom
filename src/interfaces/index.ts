@@ -9,6 +9,12 @@ export interface defenseEquipType {
   defense: number;
 }
 
+export interface potions{
+  name: string;
+  mana: number;
+  health: number;
+}
+
 // Characters
 export interface charType {
   name: string;
