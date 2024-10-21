@@ -16,7 +16,7 @@ let player: mainCharType = {
 
 const expToNextLevel = [100, 300, 600, 1000, 1500];
 
-function gainExp(expGained: number) {
+export function gainExp(expGained: number) {
   player.exp += expGained;
   for (let i = player.level; i < expToNextLevel.length; i++) {
     if (player.exp >= expToNextLevel[i]) {
@@ -26,7 +26,7 @@ function gainExp(expGained: number) {
   }
 }
 
-function expThreshold(): number {
+export function expThreshold(): number {
   if (player.level < expToNextLevel.length){
     const nextLevelExp = expToNextLevel[player.level]
     return nextLevelExp - player.exp
