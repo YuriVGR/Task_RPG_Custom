@@ -1,5 +1,7 @@
 import { locationType } from "../interfaces";
-import { goBuy } from "./shop";
+import { goArmorShop, goWeaponShop, goPotionShop } from "./shop";
+import { goTravel, goExplore, goHunt } from "../scripts/travel";
+import { goCity, goVillage, goForest, goDungeon } from "../scripts/travel";
 
 export const location: locationType[] = [
   {
@@ -7,8 +9,9 @@ export const location: locationType[] = [
     name: "Cidade",
     menu: [
       { label: "Explorar", action: goExplore, text: "" },
-      { label: "Comprar", action: goBuy, text: "" },
-      { label: "Viajar", action: goTravel, text: "" },
+      { label: "Loja de Armas", action: goWeaponShop, text: "" },
+      { label: "Loja de Armaduras", action: goArmorShop, text: "" },
+      { label: "Travel", action: goTravel, text: "" },
     ],
   },
   {
@@ -16,42 +19,33 @@ export const location: locationType[] = [
     name: "Vila",
     menu: [
       { label: "Explorar", action: goExplore, text: "" },
-      { label: "Comprar", action: goBuy, text: "" },
-      { label: "Viajar", action: goTravel, text: "" },
+      { label: "Loja de Poções", action: goPotionShop, text: "" },
+      { label: "Travel", action: goTravel, text: "" },
     ],
   },
   {
     id: 3,
     name: "Floresta",
     menu: [
-      { label: "Caçar", action: goExplore, text: "" },
-      { label: "Explorar", action: goBuy, text: "" },
-      { label: "Viajar", action: goTravel, text: "" },
+      { label: "Caçar", action: goHunt, text: "" },
+      { label: "Explorar", action: goExplore, text: "" },
+      { label: "Travel", action: goTravel, text: "" },
     ],
   },
   {
     id: 4,
     name: "Dungeon",
     menu: [
-      { label: "Caçar", action: goExplore, text: "" },
-      { label: "Explorar", action: goBuy, text: "" },
-      { label: "Viajar", action: goTravel, text: "" },
+      { label: "Caçar", action: goHunt, text: "" },
+      { label: "Explorar", action: goExplore, text: "" },
+      { label: "Travel", action: goTravel, text: "" },
     ],
   },
 ];
 
-const travel = [
+export const travel = [
   { name: "Cidade", action: goCity },
   { name: "Vila", action: goVillage },
   { name: "Floresta", action: goForest },
   { name: "Dungeon", action: goDungeon },
 ];
-
-function goTravel() {}
-
-function goExplore() {}
-
-function goCity() {}
-function goVillage() {}
-function goForest() {}
-function goDungeon() {}
