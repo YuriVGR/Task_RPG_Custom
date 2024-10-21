@@ -9,7 +9,7 @@ export interface defenseEquipType {
   defense: number;
 }
 
-export interface potions{
+export interface potions {
   name: string;
   mana: number;
   health: number;
@@ -19,7 +19,6 @@ export interface potions{
 export interface charType {
   name: string;
   health: number;
-  mana: number;
   atk: number;
   critChance: number;
 }
@@ -27,10 +26,13 @@ export interface charType {
 export interface mainCharType extends charType {
   exp: number;
   level: number;
+  mana: number;
 }
 
 // Locations
+
 export interface locationType {
   name: string;
-  menu: { name: string; action: () => void; text: string }[];
+  id: number;
+  menu: { label: string; action: () => void; text: string }[];
 }
