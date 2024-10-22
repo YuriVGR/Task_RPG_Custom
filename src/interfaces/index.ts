@@ -47,16 +47,16 @@ export interface locationType {
   name: string;
   id: number;
   menu: {
+    id?: number;
     label: string;
     action?: () => void;
-    subMenu?: MenuItem[];
-    text: string;
+    text?: string;
   }[];
 }
 
 // Player
-interface InventoryItem {
+export interface InventoryItem {
   id: number;
   name: string;
-  quantity: number
+  quantity: number;
 }
