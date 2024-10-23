@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "../views/home";
-import SettingScreen from "../views/settings";
+import HomeScreen from "../screens/home";
+import SettingScreen from "../screens/settings";
 
 const Tab = createBottomTabNavigator();
 
