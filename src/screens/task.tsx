@@ -8,6 +8,9 @@ export default function TaskScreen() {
   const [task, settask] = useState<{ title: string; description: string }[]>([])
 
   const handleSaveTask = () => {
+    if(title == null || description == null){
+      alert("Digite algo para a task")
+    }
     const newTask = {
       title: title,
       description: description,
