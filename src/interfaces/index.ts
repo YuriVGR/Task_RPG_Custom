@@ -60,3 +60,6 @@ export interface InventoryItem {
   name: string;
   quantity: number;
 }
+
+// Task
+export interface Task {}
