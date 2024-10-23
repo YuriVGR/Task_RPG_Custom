@@ -1,18 +1,21 @@
 import { useState } from "react";
-import { View, TouchableOpacity, Text, TextInput } from "react-native";
+import { View, TouchableOpacity, Text, TextInput, FlatList } from "react-native";
 import { Task } from "../interfaces";
 
 export default function TaskScreen() {
   const [title, settitle] = useState("")
   const [description, setdescription] = useState("")
-  const [task, settask] = useState<{ title: string; description: string } | null>(null)
+  const [task, settask] = useState<{ title: string; description: string }[]>([])
 
   const handleSaveTask = () => {
     const newTask = {
       title: title,
       description: description,
     }
-    settask(newTask)
+    settask([...task, newTask])
+
+    settitle("")
+    setdescription("")
   }
 
   return (
@@ -24,12 +27,16 @@ export default function TaskScreen() {
       <TouchableOpacity onPress={handleSaveTask}>
         <Text>Guardar Tarefa</Text>
       </TouchableOpacity>
-      {task && (
-        <View>
-          <Text>{task.title}</Text>
-          <Text>{task.description}</Text>
-        </View>
-      )}
+      <FlatList 
+        data={task}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({item}) => (
+          <View>
+            <Text>{item.title}</Text>
+            <Text>{item.description}</Text>
+          </View>
+        )}
+        />
     </View>
   );
 }
