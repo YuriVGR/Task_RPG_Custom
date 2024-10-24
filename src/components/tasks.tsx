@@ -2,7 +2,7 @@ import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { Task } from "../interfaces";
 
-export default function Tasks({ title, description, status }: Task) {
+export default function TaskComponent({ title, description, status }: Task) {
   const currentStatus = ({ status }: Task) => {
     if (status === 1) {
       return "Pendente";
@@ -29,7 +29,7 @@ export default function Tasks({ title, description, status }: Task) {
     }
     return "#A9A9A9";
   };
-  
+
   return (
     <View>
       <View style={styles.header}>
