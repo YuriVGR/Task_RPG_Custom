@@ -19,7 +19,7 @@ export default function TaskComponent({ title, description, status }: Task) {
 
   const currentColor = (status: number) => {
     if (status === 1) {
-      return "#FFD700";
+      return "#E6B800";
     }
     if (status === 2) {
       return "#4CAF50";
@@ -30,15 +30,32 @@ export default function TaskComponent({ title, description, status }: Task) {
     return "#A9A9A9";
   };
 
+  const currenBGColor = (status: number) => {
+    if (status === 1) {
+      return "#FFF9B0";
+    }
+    if (status === 2) {
+      return "#A5D6A7";
+    }
+    if (status === 3) {
+      return "#FFB3B3";
+    }
+    return "#D3D3D3";
+  };
+
   return (
-    <View style={styles.taskContainer}>
-      <View style={styles.header}>
-        <Text style={styles.title}>{title}</Text>
+    <View
+      style={[styles.taskContainer, { backgroundColor: currenBGColor(status) }]}
+    >
+      <View
+        style={[styles.header, { borderBottomColor: currentColor(status) }]}
+      >
+        <Text style={[styles.title, {color: currentColor(status)}]}>{title}</Text>
       </View>
       <View style={styles.middle}>
         <Text style={styles.description}>{description}</Text>
       </View>
-      <View style={styles.footer}>
+      <View style={[styles.footer, { borderTopColor: currentColor(status) }]}>
         <View style={styles.footerL}>
           <FontAwesome6
             name="circle-exclamation"
@@ -50,7 +67,7 @@ export default function TaskComponent({ title, description, status }: Task) {
         <View style={styles.footerR}>
           <TouchableOpacity>
             <FontAwesome6
-              name="trash-bin"
+              name="trash-can"
               size={20}
               color={currentColor(status)}
             />
@@ -70,16 +87,27 @@ export default function TaskComponent({ title, description, status }: Task) {
 
 const styles = StyleSheet.create({
   // Containers
-  taskContainer: {},
-  header: {},
-  middle: {},
-  footer: { flexDirection: "row" },
+  taskContainer: {
+    width: "100%",
+    paddingHorizontal: 5,
+    borderRadius: 16
+  },
+  header: { padding: 10, borderBottomWidth: 1 },
+  middle: { padding: 10, paddingBottom: 20 },
+  footer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    borderTopWidth: 1,
+  },
 
   // Text
-  title: {},
+  title: { fontSize: 20, fontWeight: "bold" },
   description: {},
 
   // Footer Areas
-  footerL: { flexDirection: "row" },
-  footerR: { flexDirection: "row" },
+  footerL: { flexDirection: "row", alignItems: "center", gap: 10 },
+  footerR: { flexDirection: "row", alignItems: "center", gap: 10 },
 });

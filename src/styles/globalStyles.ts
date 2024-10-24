@@ -3,20 +3,16 @@ import { StyleSheet } from "react-native";
 export const globalStyles = StyleSheet.create({
   // Containers
   container: {
-    flex: 1,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "flex-start",
     padding: 16,
-    backgroundColor: "#f8f8f8", // light background
   },
   subContainer: {
-    flex: 1,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "flex-start",
     width: "100%",
-    padding: 12,
   },
   // Text
   title: {

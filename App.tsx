@@ -5,12 +5,10 @@ import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <NavigationContainer>
-        <StackNavigator />
-        <StatusBar style="auto" />
-      </NavigationContainer>
-    </View>
+    <NavigationContainer>
+      <StackNavigator />
+      <StatusBar style="auto" />
+    </NavigationContainer>
   );
 }
 

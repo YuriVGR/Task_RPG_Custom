@@ -1,5 +1,9 @@
 import { View, TouchableOpacity, Text } from "react-native";
 
 export default function RPGScreen() {
-  return <View></View>;
+  return (
+    <View>
+      <Text>Teste</Text>
+    </View>
+  );
 }

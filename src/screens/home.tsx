@@ -3,5 +3,9 @@ import { View, TouchableOpacity, Text } from "react-native";
 import { location } from "../data/location";
 
 export default function HomeScreen() {
-  return <View></View>;
+  return (
+    <View>
+      <Text>Teste</Text>
+    </View>
+  );
 }
