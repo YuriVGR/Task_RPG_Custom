@@ -25,7 +25,10 @@ export default function TaskScreen() {
 
   return (
     <View style={globalStyles.container}>
-      <View></View>
+      <View>
+        <TouchableOpacity></TouchableOpacity>
+        <TouchableOpacity></TouchableOpacity>
+      </View>
       <FlatList
         data={tasks}
         renderItem={renderItem}

@@ -3,7 +3,7 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { Task } from "../interfaces";
 
 export default function TaskComponent({ title, description, status }: Task) {
-  const currentStatus = ({ status }: Task) => {
+  const currentStatus = (status: number) => {
     if (status === 1) {
       return "Pendente";
     }
@@ -17,7 +17,7 @@ export default function TaskComponent({ title, description, status }: Task) {
     return "Desconhecido";
   };
 
-  const currentColor = ({ status }: Task) => {
+  const currentColor = (status: number) => {
     if (status === 1) {
       return "#FFD700";
     }
@@ -31,24 +31,37 @@ export default function TaskComponent({ title, description, status }: Task) {
   };
 
   return (
-    <View>
+    <View style={styles.taskContainer}>
       <View style={styles.header}>
         <Text style={styles.title}>{title}</Text>
       </View>
       <View style={styles.middle}>
-        <Text style={styles.description}></Text>
+        <Text style={styles.description}>{description}</Text>
       </View>
       <View style={styles.footer}>
         <View style={styles.footerL}>
           <FontAwesome6
             name="circle-exclamation"
             size={20}
-            color={currentColor}
+            color={currentColor(status)}
           />
+          <Text>{currentStatus(status)}</Text>
         </View>
         <View style={styles.footerR}>
-          <FontAwesome6 name="trash-bin" size={20} color={currentColor} />
-          <FontAwesome6 name="pen-to-square" size={20} color={currentColor} />
+          <TouchableOpacity>
+            <FontAwesome6
+              name="trash-bin"
+              size={20}
+              color={currentColor(status)}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <FontAwesome6
+              name="pen-to-square"
+              size={20}
+              color={currentColor(status)}
+            />
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -56,15 +69,17 @@ export default function TaskComponent({ title, description, status }: Task) {
 }
 
 const styles = StyleSheet.create({
+  // Containers
+  taskContainer: {},
   header: {},
   middle: {},
-  footer: {},
+  footer: { flexDirection: "row" },
 
   // Text
   title: {},
   description: {},
 
   // Footer Areas
-  footerL: {},
-  footerR: {},
+  footerL: { flexDirection: "row" },
+  footerR: { flexDirection: "row" },
 });
