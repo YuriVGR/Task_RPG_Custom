@@ -5,6 +5,7 @@ import { Task } from "../interfaces";
 export default function TaskScreen() {
   return (
     <View>
+      
     </View>
   );
 }
