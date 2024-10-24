@@ -1,11 +1,11 @@
 import { charType, mainCharType } from "../interfaces";
 
 export const enemies: charType[] = [
-  { name: "Slime", health: 7, atk: 2, critChance: 0 },
-  { name: "Goblin", health: 15, atk: 5, critChance: 2 },
-  { name: "Gnoll", health: 15, atk: 10, critChance: 7.5 },
+  { name: "Slime", health: 5, atk: 2, critChance: 0 },
+  { name: "Goblin", health: 10, atk: 5, critChance: 2 },
+  { name: "Gnoll", health: 15, atk: 7, critChance: 7.5 },
   { name: "Ogro", health: 50, atk: 15, critChance: 5 },
-  { name: "Lich", health: 35, atk: 30, critChance: 0 },
+  { name: "Lich", health: 25, atk: 30, critChance: 2 },
 ];
 
 export const enemieBosses: charType[] = [
@@ -13,7 +13,7 @@ export const enemieBosses: charType[] = [
   { name: "Chefe dos Goblins", health: 60, atk: 15, critChance: 10 },
   { name: "Gnoll Titã", health: 80, atk: 25, critChance: 15 },
   { name: "Ogro Mestre de Guerra", health: 150, atk: 35, critChance: 10 },
-  { name: "Lich Ancestral", health: 120, atk: 50, critChance: 5 },
+  { name: "Lich Ancestral", health: 100, atk: 50, critChance: 5 },
 ];
 
 export const allies: charType[] = [
@@ -25,7 +25,7 @@ export const allies: charType[] = [
   },
   {
     name: "Maga",
-    health: 7.5,
+    health: 5.5,
     atk: 15,
     critChance: 0,
   },
