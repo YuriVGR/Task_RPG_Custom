@@ -1,44 +1,70 @@
-import { useState } from "react";
-import { View, TouchableOpacity, Text, TextInput, FlatList } from "react-native";
+import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { Task } from "../interfaces";
 
-export default function Tasks() {
-    const [title, settitle] = useState("")
-    const [description, setdescription] = useState("")
-    const [task, settask] = useState<{ title: string; description: string }[]>([])
-
-    const handleSaveTask = () => {
-        if (title == null || description == null) {
-            alert("Digite algo para a task")
-        }
-        const newTask = {
-            title: title,
-            description: description,
-        }
-        settask([...task, newTask])
-
-        settitle("")
-        setdescription("")
+export default function Tasks({ title, description, status }: Task) {
+  const currentStatus = ({ status }: Task) => {
+    if (status === 1) {
+      return "Pendente";
     }
-    return(
+    if (status === 2) {
+      return "Concluído";
+    }
+    if (status === 3) {
+      return "Cancelado";
+    }
+
+    return "Desconhecido";
+  };
+
+  const currentColor = ({ status }: Task) => {
+    if (status === 1) {
+      return "#FFD700";
+    }
+    if (status === 2) {
+      return "#4CAF50";
+    }
+    if (status === 3) {
+      return "#FF4D4D";
+    }
+    return "#A9A9A9";
+  };
+  
+  return (
     <View>
-      <View>
-        <TextInput onChangeText={(e) => settitle(e)} placeholder='Digite o Titulo de sua tarefa' />
-        <TextInput onChangeText={(e) => setdescription(e)} placeholder='Digite o Titulo de sua tarefa' />
+      <View style={styles.header}>
+        <Text style={styles.title}>{title}</Text>
       </View>
-      <TouchableOpacity onPress={handleSaveTask}>
-        <Text>Guardar Tarefa</Text>
-      </TouchableOpacity>
-      <FlatList 
-        data={task}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({item}) => (
-          <View>
-            <Text>{item.title}</Text>
-            <Text>{item.description}</Text>
-          </View>
-        )}
-        />
+      <View style={styles.middle}>
+        <Text style={styles.description}></Text>
+      </View>
+      <View style={styles.footer}>
+        <View style={styles.footerL}>
+          <FontAwesome6
+            name="circle-exclamation"
+            size={20}
+            color={currentColor}
+          />
+        </View>
+        <View style={styles.footerR}>
+          <FontAwesome6 name="trash-bin" size={20} color={currentColor} />
+          <FontAwesome6 name="pen-to-square" size={20} color={currentColor} />
+        </View>
+      </View>
     </View>
-    )
+  );
 }
+
+const styles = StyleSheet.create({
+  header: {},
+  middle: {},
+  footer: {},
+
+  // Text
+  title: {},
+  description: {},
+
+  // Footer Areas
+  footerL: {},
+  footerR: {},
+});
