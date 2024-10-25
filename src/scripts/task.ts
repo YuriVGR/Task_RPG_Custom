@@ -27,7 +27,7 @@ export const loadTasks = async (): Promise<Task[]> => {
     const jsonValue = await AsyncStorage.getItem("tasks");
     return jsonValue != null ? JSON.parse(jsonValue) : [];
   } catch (e) {
-    console.log(e); // Handle error
+    console.log(e);
     return [];
   }
 };
