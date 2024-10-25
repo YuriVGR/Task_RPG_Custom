@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { View, TouchableOpacity, Text, FlatList } from "react-native";
 import { globalStyles } from "../styles/globalStyles";
 import { Task } from "../interfaces";
-import { taskList } from "../data/task";
 import TaskComponent from "../components/tasks";
 import { addTask, removeTask, loadTasks } from "../scripts/task";
 
@@ -24,8 +23,13 @@ export default function TaskScreen() {
       description: "New task description",
       status: 3,
     };
-    await addTask(newTask);
-    setTaskList([...taskList, newTask]);
+    const updatedTasks = await addTask(taskList, newTask);
+    setTaskList(updatedTasks);
+  };
+
+  const handleRemoveTask = async (taskId: number) => {
+    const updatedTasks = await removeTask(taskList, taskId);
+    setTaskList(updatedTasks);
   };
 
   const renderItem = ({ item }: { item: Task }) => {
@@ -36,6 +40,7 @@ export default function TaskScreen() {
           title={item.title}
           description={item.description}
           status={item.status}
+          removeTask={handleRemoveTask}
         />
       </View>
     );

@@ -1,18 +1,16 @@
 import { Task } from "../interfaces";
-import { taskList } from "../data/task";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const addTask = async (newTask: Task) => {
-  taskList.push(newTask);
-  await saveTasks(taskList);
+export const addTask = async (tasks: Task[], newTask: Task) => {
+  const updatedTasks = [...tasks, newTask];
+  await saveTasks(updatedTasks);
+  return updatedTasks;
 };
 
-export const removeTask = async (taskId: number) => {
-  const index = taskList.findIndex((item) => item.id === taskId);
-  if (index > -1) {
-    taskList.splice(index, 1);
-    await saveTasks(taskList);
-  }
+export const removeTask = async (tasks: Task[], taskId: number) => {
+  const updatedTasks = tasks.filter((item) => item.id !== taskId);
+  await saveTasks(updatedTasks);
+  return updatedTasks;
 };
 
 export const saveTasks = async (tasks: Task[]) => {
@@ -31,5 +29,14 @@ export const loadTasks = async (): Promise<Task[]> => {
   } catch (e) {
     console.log(e); // Handle error
     return [];
+  }
+};
+
+export const clearAll = async () => {
+  try {
+    await AsyncStorage.clear();
+    console.log("AsyncStorage successfully cleared!");
+  } catch (error) {
+    console.error("Failed to clear AsyncStorage:", error);
   }
 };
