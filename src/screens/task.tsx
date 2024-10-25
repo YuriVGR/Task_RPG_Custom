@@ -27,7 +27,7 @@ export default function TaskScreen() {
 
   const handleAddTask = async () => {
     const newTask: Task = {
-      id: taskList.length + 1,
+      id: `${Date.now()} - ${taskList.length + 1}`,
       title: `${title}`,
       description: `${description}`,
       status: 3,
@@ -36,7 +36,7 @@ export default function TaskScreen() {
     setTaskList(updatedTasks);
   };
 
-  const handleRemoveTask = async (taskId: number) => {
+  const handleRemoveTask = async (taskId: string) => {
     const updatedTasks = await removeTask(taskList, taskId);
     setTaskList(updatedTasks);
   };

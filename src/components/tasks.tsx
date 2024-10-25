@@ -3,7 +3,7 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { Task } from "../interfaces";
 
 interface TaskComponentProps extends Task {
-  removeTask: (taskId: number) => void; // Add this to the props interface
+  removeTask: (taskId: string) => void; // Add this to the props interface
 }
 
 export default function TaskComponent({
@@ -23,34 +23,33 @@ export default function TaskComponent({
     if (status === 3) {
       return "Cancelado";
     }
-
     return "Desconhecido";
   };
 
   const currentColor = (status: number) => {
     if (status === 1) {
-      return "#E6B800"; // Darker yellow
+      return "#E6B800";
     }
     if (status === 2) {
-      return "#4CAF50"; // Green
+      return "#4CAF50";
     }
     if (status === 3) {
-      return "#FF4D4D"; // Red
+      return "#FF4D4D";
     }
-    return "#A9A9A9"; // Gray for unknown
+    return "#A9A9A9";
   };
 
   const currentBGColor = (status: number) => {
     if (status === 1) {
-      return "#FFF9B0"; // Lighter yellow background
+      return "#FFF9B0";
     }
     if (status === 2) {
-      return "#A5D6A7"; // Lighter green background
+      return "#A5D6A7";
     }
     if (status === 3) {
-      return "#FFB3B3"; // Lighter red background
+      return "#FFB3B3";
     }
-    return "#D3D3D3"; // Gray for unknown
+    return "#D3D3D3";
   };
 
   return (

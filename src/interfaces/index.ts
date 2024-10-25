@@ -63,7 +63,7 @@ export interface InventoryItem {
 
 // Task
 export interface Task {
-  id: number;
+  id: string;
   title: string;
   description: string;
   status: number;

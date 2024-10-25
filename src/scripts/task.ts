@@ -7,7 +7,7 @@ export const addTask = async (tasks: Task[], newTask: Task) => {
   return updatedTasks;
 };
 
-export const removeTask = async (tasks: Task[], taskId: number) => {
+export const removeTask = async (tasks: Task[], taskId: string) => {
   const updatedTasks = tasks.filter((item) => item.id !== taskId);
   await saveTasks(updatedTasks);
   return updatedTasks;
