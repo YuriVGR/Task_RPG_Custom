@@ -27,7 +27,7 @@ export default function TaskScreen() {
 
   const handleAddTask = async () => {
     const newTask: Task = {
-      id: `${Date.now()} - ${taskList.length + 1}`,
+      id: `${Date.now()} - ${taskList.length}`,
       title: `${title}`,
       description: `${description}`,
       status: 3,
