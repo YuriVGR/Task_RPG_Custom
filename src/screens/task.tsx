@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { View, TouchableOpacity, Text, FlatList } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  FlatList,
+  TextInput,
+  StyleSheet,
+} from "react-native";
 import { globalStyles } from "../styles/globalStyles";
 import { Task } from "../interfaces";
 import TaskComponent from "../components/tasks";
@@ -7,6 +14,8 @@ import { addTask, removeTask, loadTasks } from "../scripts/task";
 
 export default function TaskScreen() {
   const [taskList, setTaskList] = useState<Task[]>([]);
+  const [title, onChangeTitle] = useState("");
+  const [description, onChangeDescription] = useState("");
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -19,8 +28,8 @@ export default function TaskScreen() {
   const handleAddTask = async () => {
     const newTask: Task = {
       id: taskList.length + 1,
-      title: `Task ${taskList.length + 1}`,
-      description: "New task description",
+      title: `${title}`,
+      description: `${description}`,
       status: 3,
     };
     const updatedTasks = await addTask(taskList, newTask);
@@ -49,8 +58,25 @@ export default function TaskScreen() {
   return (
     <View style={globalStyles.container}>
       <View style={globalStyles.subContainer}>
-        <TouchableOpacity style={globalStyles.button} onPress={handleAddTask}>
-          <Text style={globalStyles.buttonText}>Teste</Text>
+        <Text>Gerar Task</Text>
+        <View>
+          <Text>Titulo:</Text>
+          <TextInput
+            onChangeText={onChangeTitle}
+            style={styles.input}
+            value={title}
+          />
+        </View>
+        <View>
+          <Text>Descrição:</Text>
+          <TextInput
+            onChangeText={onChangeDescription}
+            style={styles.input}
+            value={description}
+          />
+        </View>
+        <TouchableOpacity onPress={handleAddTask}>
+          <Text>Gerar task</Text>
         </TouchableOpacity>
       </View>
       <FlatList
@@ -62,3 +88,7 @@ export default function TaskScreen() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  input: {},
+});
