@@ -16,7 +16,7 @@ const loadItem = async (): Promise<InventoryItem[]> => {
     const jsonValue = await AsyncStorage.getItem("inventory");
     return jsonValue != null ? JSON.parse(jsonValue) : [];
   } catch (e) {
-    console.log(e); // Handle error
+    console.log(e);
     return [];
   }
 };
