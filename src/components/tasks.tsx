@@ -1,4 +1,4 @@
-import { View, TouchableOpacity, StyleSheet, Text } from "react-native";  
+import { View, TouchableOpacity, StyleSheet, Text } from "react-native";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { Task } from "../interfaces";
 
@@ -6,7 +6,13 @@ interface TaskComponentProps extends Task {
   removeTask: (taskId: string) => void;
 }
 
-export default function TaskComponent({ id, title, description, status, removeTask }: TaskComponentProps) {
+export default function TaskComponent({
+  id,
+  title,
+  description,
+  status,
+  removeTask,
+}: TaskComponentProps) {
   const currentStatus = (status: number) => {
     if (status === 1) {
       return "Pendente";
@@ -47,9 +53,16 @@ export default function TaskComponent({ id, title, description, status, removeTa
     return "#D3D3D3"; // Gray for unknown
   };
 
-
   return (
-    <View>
+    <View
+      style={[
+        styles.taskContainer,
+        {
+          backgroundColor: currentBGColor(status),
+          borderColor: currentColor(status),
+        },
+      ]}
+    > 
       <View style={styles.header}>
         <Text style={styles.title}>{title}</Text>
       </View>
@@ -89,6 +102,12 @@ export default function TaskComponent({ id, title, description, status, removeTa
 }
 
 const styles = StyleSheet.create({
+  taskContainer: {
+    width: "100%",
+    paddingHorizontal: 5,
+    borderRadius: 16,
+    borderWidth: 1,
+  },
   header: {
     padding: 10,
     borderBottomWidth: 1,
@@ -106,7 +125,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
   },
   title: {
-    fontSize: 20, 
+    fontSize: 20,
     fontWeight: "bold",
   },
   description: {
