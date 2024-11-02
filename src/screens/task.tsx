@@ -13,6 +13,8 @@ import { addTask, removeTask, loadTasks } from "../scripts/task";
 
 export default function TaskScreen() {
   const [taskList, setTaskList] = useState<Task[]>([]);
+  const [title, onChangeTitle] = useState("");
+  const [description, onChangeDescription] = useState("");
 
   useEffect(() => {
     const fetchTasks = async () => {
