@@ -1,4 +1,4 @@
-import { View, TouchableOpacity, StyleSheet, Text } from "react-native";
+import { View, TouchableOpacity, StyleSheet, Text } from "react-native";  
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { Task } from "../interfaces";
 
@@ -89,11 +89,33 @@ export default function TaskComponent({ id, title, description, status, removeTa
 }
 
 const styles = StyleSheet.create({
-  header: {},
-  title: {},
-  middle: {},
-  description: {},
-  footer: {},
+  header: {
+    padding: 10,
+    borderBottomWidth: 1,
+  },
+  middle: {
+    padding: 10,
+    paddingBottom: 20,
+  },
+  footer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    borderTopWidth: 1,
+  },
+  title: {
+    fontSize: 20, 
+    fontWeight: "bold",
+  },
+  description: {
+    fontSize: 16,
+  },
   footerL: {},
-  footerR: {},
+  footerR: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
 });
