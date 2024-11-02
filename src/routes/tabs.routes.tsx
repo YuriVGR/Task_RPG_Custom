@@ -18,14 +18,14 @@ export default function TabRoutes() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
+        tabBarIcon: ({ color, size, focused }) => {
           let iconName: IconDefinition = faHome;
           if (route.name === "RPG") {
-            iconName === faSwords;
+            iconName = faSwords;
           } else if (route.name === "Tasks") {
-            iconName === faBarsProgress;
+            iconName = faBarsProgress;
           } else if (route.name === "Settings") {
-            iconName === faCog;
+            iconName = faCog;
           }
           return <FontAwesomeIcon icon={iconName} color={color} size={size} />;
         },

@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { View, TouchableOpacity, Text, FlatList } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  FlatList,
+  StyleSheet,
+} from "react-native";
 import { globalStyles } from "../styles/globalStyles";
 import { Task } from "../interfaces";
 import TaskComponent from "../components/tasks";
@@ -20,13 +26,14 @@ export default function TaskScreen() {
     const newTask: Task = {
       id: taskList.length + 1,
       title: `Task ${taskList.length + 1}`,
-      description: "New task description",
-      status: 3,
+      description: `Task N.${taskList.length + 1} description`,
+      status: 1,
     };
     const updatedTasks = await addTask(taskList, newTask);
     setTaskList(updatedTasks);
   };
 
+  
   const handleRemoveTask = async (taskId: number) => {
     const updatedTasks = await removeTask(taskList, taskId);
     setTaskList(updatedTasks);
@@ -34,7 +41,7 @@ export default function TaskScreen() {
 
   const renderItem = ({ item }: { item: Task }) => {
     return (
-      <View style={{ marginBottom: 20 }}>
+      <View style={{ marginBottom: 10 }}>
         <TaskComponent
           id={item.id}
           title={item.title}
@@ -46,9 +53,13 @@ export default function TaskScreen() {
     );
   };
 
+  const logdata = () => {
+    console.log(taskList as Task[]);
+  }; // Remove this later
+
   return (
     <View style={globalStyles.container}>
-      <View style={globalStyles.subContainer}>
+      <View style={styles.subContainer}>
         <TouchableOpacity style={globalStyles.button} onPress={handleAddTask}>
           <Text style={globalStyles.buttonText}>Teste</Text>
         </TouchableOpacity>
@@ -62,3 +73,11 @@ export default function TaskScreen() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  subContainer: {
+    backgroundColor: "white",
+    padding: 10,
+    width: "100%",
+  },
+});

@@ -57,7 +57,10 @@ export default function TaskComponent({
     <View
       style={[
         styles.taskContainer,
-        { backgroundColor: currentBGColor(status) },
+        {
+          backgroundColor: currentBGColor(status),
+          borderColor: currentColor(status),
+        },
       ]}
     >
       <View
@@ -77,7 +80,9 @@ export default function TaskComponent({
             size={20}
             color={currentColor(status)}
           />
-          <Text>{currentStatus(status)}</Text>
+          <Text style={{ color: currentColor(status), fontWeight: "bold" }}>
+            {currentStatus(status)}
+          </Text>
         </View>
         <View style={styles.footerR}>
           <TouchableOpacity onPress={() => removeTask(id)}>
@@ -105,7 +110,7 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingHorizontal: 5,
     borderRadius: 16,
-    marginBottom: 10, // Space between tasks
+    borderWidth: 1
   },
   header: {
     padding: 10,
