@@ -23,7 +23,6 @@ export default function TaskComponent({
     if (status === 3) {
       return "Cancelado";
     }
-
     return "Desconhecido";
   };
 
@@ -131,7 +130,11 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
   },
-  footerL: {},
+  footerL: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
   footerR: {
     flexDirection: "row",
     alignItems: "center",
