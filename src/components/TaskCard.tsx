@@ -1,6 +1,7 @@
 import { FontAwesome5, Foundation } from '@expo/vector-icons';
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, Modal } from 'react-native';
+import TaskDeleteModal from './TaskDeleteModal';
 
 interface TaskCardProps {
     id: string;
@@ -35,7 +36,17 @@ const TaskCard: React.FC<TaskCardProps> = ({ title, description, status, id, rem
     const statusColor = statusColors[status] || statusColors.default;
     const borderColor = borderColors[status] || borderColors.default;
     const statusText = statusTexts[status] || statusTexts.default;
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const openModal = () => {
+        setModalVisible(true);
+      };
     
+      // Função para fechar o modal
+      const closeModal = () => {
+        setModalVisible(false);
+      };
+
     return (
         <View className={`${statusColor} ${borderColor} m-4 rounded-lg p-4 border-2`}>
             <Text className="font-semibold text-lg p-2">{title}</Text>
@@ -45,11 +56,12 @@ const TaskCard: React.FC<TaskCardProps> = ({ title, description, status, id, rem
             <View className="flex-row p-2">
                 <Foundation name="info" size={20} color="black" />
                 <Text className="text-sm px-2">{statusText}</Text>
-                <TouchableOpacity className="px-2 ml-auto" onPress={() => removeTask(id)}>
+                <TouchableOpacity className="px-2 ml-auto" onPress={openModal} >
                     <FontAwesome5  name="trash-alt" size={20} color="black" />
                 </TouchableOpacity>
                 <FontAwesome5 name="edit" size={20} color="black" />
             </View>
+            <TaskDeleteModal isVisible={modalVisible} onClose={closeModal} onDelete={() => removeTask(id)} />
         </View>
     );
 };

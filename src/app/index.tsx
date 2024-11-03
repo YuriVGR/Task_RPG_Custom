@@ -3,6 +3,7 @@ import { Image, StyleSheet, View, Text, Button } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
+import { router } from 'expo-router';
 
 // 1. Defina os tipos de parâmetros das telas de navegação
 type TasksStackParamList = {
@@ -15,10 +16,30 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<TasksStackParamList, '
 
 export default function HomeScreen() {
   // 3. Inicialize a navegação com o tipo correto
-  const navigation = useNavigation<HomeScreenNavigationProp>();
 
   return (
     <SafeAreaView style={styles.container}>
+      <Image
+        source={{ uri: 'https://example.com/path-to-rpg-background.jpg' }}
+        style={styles.backgroundImage}
+      />
+      <View style={styles.overlay}>
+        <Text style={styles.welcomeText}>Bem-Vindo, Aventureiro!</Text>
+        <Text style={styles.subText}>
+          Complete suas tarefas para ganhar pontos de experiência e subir de nível!
+        </Text>
+        <Image
+          source={{ uri: 'https://example.com/path-to-character-image.png' }}
+          style={styles.characterImage}
+        />
+        <View style={styles.buttonContainer}>
+          <Button
+            title="Iniciar Missão"
+            onPress={() => router.push('/(tabs)/')}
+            color="#6A0DAD"
+          />
+        </View>
+      </View>
     </SafeAreaView>
   );
 }

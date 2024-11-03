@@ -3,6 +3,7 @@ import TaskCard from '@/components/TaskCard';
 import { useState } from 'react';
 import { Image, StyleSheet, Platform, View, Text, ScrollView, Modal, TextInput, Button, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import TaskCreateModal from '@/components/TaskCreateModal';
 
 const initialTasks = [
     { id: '1', title: 'Corrigir Botão de Login', description: 'É preciso que quando cliente clique em login seja validado.', status: 1 },
@@ -13,17 +14,16 @@ const initialTasks = [
 export default function TaskScreen() {
     const [taskList, setTaskList] = useState<Task[]>(initialTasks);
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [newTask, setNewTask] = useState({ title: '', description: '' });
 
     const removeTask = (id: string) => {
         setTaskList(taskList.filter(task => task.id !== id));
     };
 
-    const addTask = () => {
-        const newTaskId = (taskList.length + 1).toString();
+    const addTask = (title: string, description: string) => {
+        const newTaskId = taskList[ taskList.length - 1 ].id + 1;
+        const newTask = { id: newTaskId, title: title, description: description, status: 1 };
         const taskToAdd = { ...newTask, id: newTaskId, status: 1 };
         setTaskList([...taskList, taskToAdd]);
-        setNewTask({ title: '', description: '' });
         setIsModalVisible(false);
     };
 
@@ -39,30 +39,7 @@ export default function TaskScreen() {
                     <Text style={styles.addButtonText}>Adicionar Tarefa</Text>
                 </TouchableOpacity>
             </ScrollView>
-
-            <Modal visible={isModalVisible} animationType="slide" transparent={true}>
-                <View style={styles.modalContainer}>
-                    <View style={styles.modalContent}>
-                        <Text>Nova Tarefa</Text>
-                        <TextInput
-                            placeholder="Título"
-                            value={newTask.title}
-                            onChangeText={(text) => setNewTask({ ...newTask, title: text })}
-                            style={styles.input}
-                        />
-                        <TextInput
-                            placeholder="Descrição"
-                            value={newTask.description}
-                            onChangeText={(text) => setNewTask({ ...newTask, description: text })}
-                            style={styles.input}
-                        />
-                        <View style={styles.buttonContainer}>
-                            <Button title="Adicionar" onPress={addTask} />
-                            <Button title="Cancelar" onPress={() => setIsModalVisible(false)} />
-                        </View>
-                    </View>
-                </View>
-            </Modal>
+            <TaskCreateModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} onAdd={addTask} /> 
         </SafeAreaView>
     );
 }
