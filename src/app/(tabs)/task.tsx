@@ -32,7 +32,13 @@ export default function TaskScreen() {
             <ScrollView>
                 <Text>Lista de tarefas</Text>
                 {taskList.map(task => (
-                    <TaskCard key={task.id} {...task} removeTask={() => removeTask(task.id)} />
+                    <TaskCard key={task.id} {...task} removeTask={() => removeTask(task.id)}  editTask={(id: string, title: string, description: string, status: number) => {
+                        const taskToUpdate = taskList.find(t => t.id === id)!;
+                        taskToUpdate.title = title;
+                        taskToUpdate.description = description;
+                        taskToUpdate.status = status;
+                        setTaskList([...taskList]); 
+                    }}/>
                 ))}
 
                 <TouchableOpacity onPress={() => setIsModalVisible(true)} style={styles.addButton}>
