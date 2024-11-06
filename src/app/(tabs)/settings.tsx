@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Switch, Button, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function SettingsScreen() {
   const [isNotificationsEnabled, setNotificationsEnabled] = React.useState(false);
@@ -9,7 +10,7 @@ export default function SettingsScreen() {
   const toggleDarkTheme = () => setDarkTheme((previousState) => !previousState);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.header}>Configurações</Text>
 
       {/* Configuração de Notificações */}
@@ -47,7 +48,7 @@ export default function SettingsScreen() {
           <Button title="Redefinir Configurações" color="red" onPress={() => alert('Configurações redefinidas.')} />
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
