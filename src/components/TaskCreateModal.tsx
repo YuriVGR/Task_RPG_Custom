@@ -1,12 +1,8 @@
 
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Modal } from 'react-native';
+import { TaskCreateModalProps } from "@/types";
 
-interface TaskCreateModalProps {
-    isVisible: boolean;
-    onClose: () => void;
-    onAdd: (title: string, description: string) => void;
-}
 
 export default function TaskCreateModal({ isVisible, onClose, onAdd }: TaskCreateModalProps) {
     const [title, setTitle] = useState('');

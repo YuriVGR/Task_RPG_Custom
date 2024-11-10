@@ -1,12 +1,8 @@
 
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Modal } from 'react-native';
+import { TaskDeleteModalProps } from "@/types";
 
-interface TaskDeleteModalProps {
-    isVisible: boolean;
-    onClose: () => void;
-    onDelete: () => void;
-}
 
 export default function TaskDeleteModal({ isVisible, onClose, onDelete }: TaskDeleteModalProps) {
 

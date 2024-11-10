@@ -1,4 +1,4 @@
-import { Task } from "@/types/Task";
+import { TaskProps } from "@/types";
 import TaskCard from "@/components/TaskCard";
 import { useState } from "react";
 import {
@@ -41,7 +41,7 @@ const initialTasks = [
 ];
 
 export default function TaskScreen() {
-    const [taskList, setTaskList] = useState<Task[]>(initialTasks);
+    const [taskList, setTaskList] = useState<TaskProps[]>(initialTasks);
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const removeTask = (id: string) => {

@@ -3,20 +3,8 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import TaskDeleteModal from "./TaskDeleteModal";
 import TaskEditModal from "./TaskEditModal";
+import { TaskCardProps } from "@/types";
 
-interface TaskCardProps {
-    id: string;
-    title: string;
-    description: string;
-    status: number;
-    removeTask: (taskId: string) => void;
-    editTask: (
-        id: string,
-        title: string,
-        description: string,
-        status: number
-    ) => void;
-}
 
 // Tipagem explícita dos objetos para resolver o problema do índice
 const statusColors: { [key: number]: string } = {

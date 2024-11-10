@@ -1,15 +1,8 @@
 import { Picker } from '@react-native-picker/picker';
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Modal } from 'react-native';
+import { TaskEditModalProps } from "@/types";
 
-interface TaskEditModalProps {
-    isVisible: boolean;
-    onClose: () => void;
-    onEdit: (title: string, description: string, status: number) => void;
-    initialTitle: string;
-    initialDescription: string;
-    initialStatus: number;
-}
 
 export default function TaskEditModal({
     isVisible,
