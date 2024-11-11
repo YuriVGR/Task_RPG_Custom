@@ -1,41 +1,60 @@
 export interface TaskProps {
-    id: string;
-    title: string;
-    description: string;
-    status: number;
+  id: string;
+  title: string;
+  description: string;
+  status: number;
 }
 
 export interface TaskCardProps {
-    id: string;
-    title: string;
-    description: string;
-    status: number;
-    removeTask: (taskId: string) => void;
-    editTask: (
-        id: string,
-        title: string,
-        description: string,
-        status: number
-    ) => void;
+  id: string;
+  title: string;
+  description: string;
+  status: number;
+  removeTask: (taskId: string) => void;
+  editTask: (
+    id: string,
+    title: string,
+    description: string,
+    status: number
+  ) => void;
 }
 
 export interface TaskCreateModalProps {
-    isVisible: boolean;
-    onClose: () => void;
-    onAdd: (title: string, description: string) => void;
+  isVisible: boolean;
+  onClose: () => void;
+  onAdd: (title: string, description: string) => void;
 }
 
 export interface TaskDeleteModalProps {
-    isVisible: boolean;
-    onClose: () => void;
-    onDelete: () => void;
+  isVisible: boolean;
+  onClose: () => void;
+  onDelete: () => void;
 }
 
 export interface TaskEditModalProps {
-    isVisible: boolean;
-    onClose: () => void;
-    onEdit: (title: string, description: string, status: number) => void;
-    initialTitle: string;
-    initialDescription: string;
-    initialStatus: number;
+  isVisible: boolean;
+  onClose: () => void;
+  onEdit: (title: string, description: string, status: number) => void;
+  initialTitle: string;
+  initialDescription: string;
+  initialStatus: number;
+}
+
+// RPG Types
+
+export interface RPGScreenProps {
+  isVisible: boolean;
+  onClose: () => void;
+  onAdd: (title: string, description: string) => void;
+}
+
+export interface MenuItemProps {
+  label: string;
+  action: () => void;
+  text: string;
+}
+
+export interface LocationProps {
+  name: string;
+  menu: MenuItemProps[];
 }
