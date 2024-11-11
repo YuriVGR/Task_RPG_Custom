@@ -5,17 +5,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { router } from "expo-router";
 
-// 1. Defina os tipos de parâmetros das telas de navegação
 type TasksStackParamList = {
     Home: undefined;
     Tasks: undefined;
 };
-
-// 2. Defina o tipo de navegação para HomeScreen
-type HomeScreenNavigationProp = NativeStackNavigationProp<
-    TasksStackParamList,
-    "Home"
->;
 
 export default function HomeScreen() {
     const [isFirst, setIsFirst] = useState(true);
