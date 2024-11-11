@@ -18,6 +18,7 @@ web-build/
 
 # Environment variables
 .env
+config.json
 
 # Lockfile
 bun.lockb

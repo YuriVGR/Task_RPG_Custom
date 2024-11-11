@@ -1,80 +1,95 @@
 import React, { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Image, StyleSheet, View, Text, Button } from "react-native";
+import {
+    Image,
+    StyleSheet,
+    View,
+    Text,
+    Button,
+    ActivityIndicator,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { router } from "expo-router";
 
-type TasksStackParamList = {
-    Home: undefined;
-    Tasks: undefined;
-};
+const STORAGE_KEY = "firstTime";
+const TIMEOUT = 2250;
 
-export default function HomeScreen() {
-    const [isFirst, setIsFirst] = useState(true);
+export default function WelcomeScreen() {
+    const [isFirstTime, setIsFirstTime] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        const checkFirstTime = async () => {
-            try {
-                const firstTime = await AsyncStorage.getItem("firstTime");
-                if (firstTime !== null) {
-                    setTimeout(async () => {
-                        setIsFirst(false);
-                        router.push("/(tabs)/");
-                    }, 3000);
-                }
-            } catch (e) {
-                console.log("Failed to check AsyncStorage:", e);
+    const checkOnboarding = async () => {
+        try {
+            const firstTime = await AsyncStorage.getItem(STORAGE_KEY);
+
+            if (firstTime === null) {
+                setIsFirstTime(true);
+                setIsLoading(false);
+            } else {
+                setTimeout(() => {
+                    router.push("/(tabs)/");
+                }, TIMEOUT);
             }
-        };
-
-        checkFirstTime();
-    }, []);
-
-    const firstTime = () => {
-        AsyncStorage.setItem("firstTime", "true");
-        router.push("/(tabs)/");
+        } catch (e) {
+            console.log("Failed to check AsyncStorage:", e);
+        }
     };
 
+    useEffect(() => {
+        checkOnboarding();
+    }, []);
+
+    const handleStart = async () => {
+        try {
+            await AsyncStorage.setItem(STORAGE_KEY, "true");
+            router.push("/(tabs)/");
+        } catch (e) {
+            console.error("Failed to save onboarding status:", e);
+        }
+    };
+
+    if (isLoading) {
+        return (
+            <SafeAreaView style={styles.container}>
+                <ActivityIndicator size="large" color="#6A0DAD" />
+                <Text style={styles.welcomeText}>Carregando...</Text>
+            </SafeAreaView>
+        );
+    }
+
+    if (!isFirstTime) {
+        return null;
+    }
+
     return (
-        <>
-            {isFirst ? (
-                <SafeAreaView style={styles.container}>
-                    <Text style={styles.welcomeText}>Carregando...</Text>
-                </SafeAreaView>
-            ) : (
-                <SafeAreaView style={styles.container}>
-                    <Image
-                        source={{
-                            uri: "https://example.com/path-to-rpg-background.jpg",
-                        }}
-                        style={styles.backgroundImage}
+        <SafeAreaView style={styles.container}>
+            <Image
+                source={{
+                    uri: "https://example.com/path-to-rpg-background.jpg",
+                }}
+                style={styles.backgroundImage}
+            />
+            <View style={styles.overlay}>
+                <Text style={styles.welcomeText}>Bem-Vindo, Aventureiro!</Text>
+                <Text style={styles.subText}>
+                    Complete suas tarefas para ganhar pontos de experiência e
+                    subir de nível!
+                </Text>
+                <Image
+                    source={{
+                        uri: "https://example.com/path-to-character-image.png",
+                    }}
+                    style={styles.characterImage}
+                />
+                <View style={styles.buttonContainer}>
+                    <Button
+                        title="Iniciar Missão"
+                        onPress={handleStart}
+                        color="#6A0DAD"
                     />
-                    <View style={styles.overlay}>
-                        <Text style={styles.welcomeText}>
-                            Bem-Vindo, Aventureiro!
-                        </Text>
-                        <Text style={styles.subText}>
-                            Complete suas tarefas para ganhar pontos de
-                            experiência e subir de nível!
-                        </Text>
-                        <Image
-                            source={{
-                                uri: "https://example.com/path-to-character-image.png",
-                            }}
-                            style={styles.characterImage}
-                        />
-                        <View style={styles.buttonContainer}>
-                            <Button
-                                title="Iniciar Missão"
-                                onPress={firstTime}
-                                color="#6A0DAD"
-                            />
-                        </View>
-                    </View>
-                </SafeAreaView>
-            )}
-        </>
+                </View>
+            </View>
+        </SafeAreaView>
     );
 }
 
