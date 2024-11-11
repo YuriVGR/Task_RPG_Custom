@@ -28,7 +28,6 @@ export default function HomeScreen() {
                 if (firstTime !== null) {
                     setTimeout(async () => {
                         setIsFirst(false);
-                        await AsyncStorage.setItem("firstTime", "true");
                         router.push("/(tabs)/");
                     }, 3000);
                 }
@@ -36,17 +35,21 @@ export default function HomeScreen() {
                 console.log("Failed to check AsyncStorage:", e);
             }
         };
-    });
+
+        checkFirstTime();
+    }, []);
 
     const firstTime = () => {
         AsyncStorage.setItem("firstTime", "true");
         router.push("/(tabs)/");
-    }
+    };
 
     return (
         <>
             {isFirst ? (
-                <></>
+                <SafeAreaView style={styles.container}>
+                    <Text style={styles.welcomeText}>Carregando...</Text>
+                </SafeAreaView>
             ) : (
                 <SafeAreaView style={styles.container}>
                     <Image
