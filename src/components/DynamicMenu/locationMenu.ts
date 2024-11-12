@@ -1,6 +1,10 @@
-import { LocationProps } from "@/types";
+import { LocationProps, MenuItemProps } from "@/types";
+import { shopMenu } from "./shopMenu";
 
-export const locationMenu: LocationProps[] = [
+type MenuSetter = (menu: MenuItemProps[], title: string) => void;
+
+export const createLocationMenu = (setMenu: MenuSetter) => {
+  const menu: LocationProps[] = [
     {
       name: "Cidade",
       menu: [
@@ -16,17 +20,17 @@ export const locationMenu: LocationProps[] = [
         },
         {
           label: "Loja de Armas",
-          action: () => console.log("Loja de Armas"),
+          action: () => setMenu(shopMenu[0].menu, shopMenu[0].name),
           text: "",
         },
         {
           label: "Loja de Armaduras",
-          action: () => console.log("Loja de Armaduras"),
+          action: () => setMenu(shopMenu[1].menu, shopMenu[1].name),
           text: "",
         },
         {
           label: "Viajar",
-          action: () => console.log("Viajar"),
+          action: () => setMenu(menu[4].menu, menu[4].name),
           text: "",
         },
       ],
@@ -46,17 +50,17 @@ export const locationMenu: LocationProps[] = [
         },
         {
           label: "Loja de Armas",
-          action: () => console.log("Loja de Armas"),
+          action: () => setMenu(shopMenu[0].menu, shopMenu[0].name),
           text: "",
         },
         {
-          label: "Loja de Armaduras",
-          action: () => console.log("Loja de Armaduras"),
+          label: "Loja de Poções",
+          action: () => setMenu(shopMenu[2].menu, shopMenu[2].name),
           text: "",
         },
         {
           label: "Viajar",
-          action: () => console.log("Viajar"),
+          action: () => setMenu(menu[4].menu, menu[4].name),
           text: "",
         },
       ],
@@ -86,7 +90,7 @@ export const locationMenu: LocationProps[] = [
         },
         {
           label: "Viajar",
-          action: () => console.log("Viajar"),
+          action: () => setMenu(menu[4].menu, menu[4].name),
           text: "",
         },
       ],
@@ -116,7 +120,7 @@ export const locationMenu: LocationProps[] = [
         },
         {
           label: "Viajar",
-          action: () => console.log("Viajar"),
+          action: () => setMenu(menu[4].menu, menu[4].name),
           text: "",
         },
       ],
@@ -124,10 +128,29 @@ export const locationMenu: LocationProps[] = [
     {
       name: "Viajar",
       menu: [
-        { label: "Cidade", action: () => console.log("Cidade"), text: "" },
-        { label: "Vila", action: () => console.log("Vila"), text: "" },
-        { label: "Floresta", action: () => console.log("Floresta"), text: "" },
-        { label: "Dungeon", action: () => console.log("Dungeon"), text: "" },
+        {
+          label: "Cidade",
+          action: () => setMenu(menu[0].menu, menu[0].name),
+          text: "",
+        },
+        {
+          label: "Vila",
+          action: () => setMenu(menu[1].menu, menu[1].name),
+          text: "",
+        },
+        {
+          label: "Floresta",
+          action: () => setMenu(menu[2].menu, menu[2].name),
+          text: "",
+        },
+        {
+          label: "Dungeon",
+          action: () => setMenu(menu[3].menu, menu[3].name),
+          text: "",
+        },
       ],
     },
   ];
+
+  return menu;
+};

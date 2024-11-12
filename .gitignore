@@ -19,10 +19,11 @@ web-build/
 # Environment variables
 .env
 config.json
+expo-env.d.ts
+
 
 # Lockfile
 bun.lockb
 package-lock.json
 
-expo-env.d.ts
 # @end expo-cli
