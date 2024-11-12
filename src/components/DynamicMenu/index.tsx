@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { createLocationMenu } from "./locationMenu";
 import { MenuItemProps, LocationProps } from "@/types";
-import { shopMenu } from "./shopMenu";
 
 export default function DynamicMenu() {
   const [currentMenu, setCurrentMenu] = useState<MenuItemProps[]>([]);
