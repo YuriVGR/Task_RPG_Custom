@@ -1,9 +1,9 @@
-import { LocationProps, MenuItemProps } from "@/types";
+import { LocationProps, MenuSetter } from "@/types";
 import { shopMenu } from "./shopMenu";
 
-type MenuSetter = (menu: MenuItemProps[], title: string) => void;
 
-export const createLocationMenu = (setMenu: MenuSetter) => {
+
+export function createLocationMenu(setMenu: MenuSetter) {
   const menu: LocationProps[] = [
     {
       name: "Cidade",
@@ -153,4 +153,4 @@ export const createLocationMenu = (setMenu: MenuSetter) => {
   ];
 
   return menu;
-};
+}

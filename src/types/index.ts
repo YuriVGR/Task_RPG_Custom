@@ -62,4 +62,7 @@ export interface LocationProps {
 export interface DynamicMenuProps {
   onMenuChange?: (menu: MenuItemProps[], title: string) => void;
   onLocationChange?: (location: string) => void;
+  onTextChange?: (text: string) => void;
 }
+
+export type MenuSetter = (menu: MenuItemProps[], title: string) => void;
