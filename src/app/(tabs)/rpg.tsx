@@ -2,10 +2,11 @@ import { Image, StyleSheet, Platform, View, Text } from "react-native";
 import DynamicMenu from "@/components/DynamicMenu";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function HomeScreen() {
+export default function RPGScreen() {
   return (
     <SafeAreaView>
       <View style={styles.placeholder} />
+
       <DynamicMenu />
     </SafeAreaView>
   );

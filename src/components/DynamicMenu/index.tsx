@@ -1,15 +1,17 @@
 import { useRef, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { createLocationMenu } from "./locationMenu";
-import { MenuItemProps, LocationProps } from "@/types";
+import { MenuItemProps, LocationProps, DynamicMenuProps } from "@/types";
 
-export default function DynamicMenu() {
+export default function DynamicMenu({
+  onMenuChange,
+  onLocationChange,
+}: DynamicMenuProps) {
   const [currentMenu, setCurrentMenu] = useState<MenuItemProps[]>([]);
-  const [menuTitle, setMenuTitle] = useState<string>("");
+  const [menuTitle, setMenuTitle] = useState("");
   const [previousMenus, setPreviousMenus] = useState<
     { menu: MenuItemProps[]; title: string }[]
   >([]);
-
   const menuRef = useRef<LocationProps[]>([]);
 
   const isCurrentMenu = (menu: MenuItemProps[], title: string) => {
@@ -19,13 +21,25 @@ export default function DynamicMenu() {
     ]);
     setCurrentMenu(menu);
     setMenuTitle(title);
+
+    onMenuChange?.(menu, title);
+    if (menuRef.current.some((loc) => loc.name === title)) {
+      onLocationChange?.(title);
+    }
   };
 
-  useState(() => {
-    menuRef.current = createLocationMenu(isCurrentMenu);
-    setCurrentMenu(menuRef.current[0].menu);
-    setMenuTitle(menuRef.current[0].name);
-  });
+  const handleBack = () => {
+    if (previousMenus.length > 0) {
+      const previous = previousMenus[previousMenus.length - 1];
+      setCurrentMenu(previous.menu);
+      setMenuTitle(previous.title);
+      setPreviousMenus((prev) => prev.slice(0, -1));
+      onMenuChange?.(previous.menu, previous.title);
+      if (menuRef.current.some((loc) => loc.name === previous.title)) {
+        onLocationChange?.(previous.title);
+      }
+    }
+  };
 
   return (
     <View>
@@ -36,7 +50,7 @@ export default function DynamicMenu() {
       ))}
 
       {previousMenus.length > 0 && (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleBack}>
           <Text>Voltar</Text>
         </TouchableOpacity>
       )}
