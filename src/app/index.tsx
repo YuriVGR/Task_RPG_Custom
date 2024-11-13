@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   Image,
-  StyleSheet,
   View,
   Text,
   TouchableOpacity,
-  ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
@@ -59,5 +57,3 @@ export default function WelcomeScreen() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({});
