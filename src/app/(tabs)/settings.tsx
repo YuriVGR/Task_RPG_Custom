@@ -35,7 +35,7 @@ export default function SettingsScreen() {
       <View style={styles.aboutSection}>
         <Text style={styles.settingLabel}>Sobre o App:</Text>
         <Text style={styles.settingDescription}>
-          App de Tarefas com elementos de RPG - v1.0
+          App de Tarefas com elementos de RPG - v0.0.1
         </Text>
       </View>
 

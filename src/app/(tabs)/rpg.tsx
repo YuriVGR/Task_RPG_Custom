@@ -11,13 +11,13 @@ export default function RPGScreen() {
   const [currentText, setCurrentText] = useState("");
 
   return (
-    <SafeAreaView>
-      <View style={styles.placeholder} />
+    <SafeAreaView className="flex flex-col items-center justify-center h-full">
+      <View className="bg-red-500 size-72 rounded-xl"/>
    
 
       {currentText && (
         <View>
-          <Text>{currentText}</Text>
+          <Text className="text-black text-2xl font-bold">{currentText}</Text>
         </View>
       )}
 
@@ -35,8 +35,4 @@ export default function RPGScreen() {
 }
 
 const styles = StyleSheet.create({
-  placeholder: {
-    width: 100,
-    height: 100,
-  },
 });

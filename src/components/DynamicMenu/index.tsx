@@ -38,50 +38,26 @@ export default function DynamicMenu({
     onLocationChange?.(menuRef.current[0].name);
   }, []);
 
-  const handleBack = () => {
-    if (previousMenus.length > 0) {
-      const previous = previousMenus[previousMenus.length - 1];
-
-      setCurrentMenu(previous.menu);
-
-      setMenuTitle(previous.title);
-
-      setPreviousMenus((prev) => prev.slice(0, -1));
-
-      onMenuChange?.(previous.menu, previous.title);
-
-      if (menuRef.current.some((loc) => loc.name === previous.title)) {
-        onLocationChange?.(previous.title);
-      }
-    }
-  };
-
   const handleMenuPress = (menuItem: MenuItemProps) => {
     menuItem.action();
     onTextChange?.(menuItem.text);
   };
 
   return (
-    <View className="flex w-full flex-col items-center justify-center">
-      <Text>{menuTitle}</Text>
+    <View className="flex w-full flex-col items-center justify-center gap-5">
+      <Text className="text-4xl font-bold">{menuTitle}</Text>
 
       {currentMenu.map((menuItem, index) => (
         <TouchableOpacity
           key={index}
           onPress={() => handleMenuPress(menuItem)}
-          className="w-3/4 h-12 flex items-center justify-center bg-blue-200"
+          className="w-3/4 flex items-center justify-center bg-purple-500 py-4 rounded-full"
         >
           <Text className="text-center text-lg font-bold">
             {menuItem.label}
           </Text>
         </TouchableOpacity>
       ))}
-
-      {previousMenus.length > 0 && (
-        <TouchableOpacity onPress={handleBack}>
-          <Text>Voltar</Text>
-        </TouchableOpacity>
-      )}
     </View>
   );
 }
