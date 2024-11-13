@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   Image,
-  StyleSheet,
   View,
   Text,
   TouchableOpacity,
-  ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
@@ -15,6 +13,29 @@ const STORAGE_KEY = "firstTime";
 const TIMEOUT = 2250;
 
 export default function WelcomeScreen() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isFirstTime, setIsFirstTime] = useState(true);
+
+  const checkOnboarding = async () => {
+    try {
+      const firstTime = await AsyncStorage.getItem(STORAGE_KEY);
+      if (firstTime === null) {
+        setIsFirstTime(true);
+        setIsLoading(false);
+      } else {
+        setTimeout(() => {
+          router.push("/(tabs)/");
+        }, TIMEOUT);
+      }
+    } catch (e) {
+      console.log("Failed to check AsyncStorage:", e);
+    }
+  };
+
+  useEffect(() => {
+    checkOnboarding();
+  }, []);
+
   const handleStart = async () => {
     try {
       await AsyncStorage.setItem(STORAGE_KEY, "true");
@@ -60,4 +81,3 @@ export default function WelcomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({});
