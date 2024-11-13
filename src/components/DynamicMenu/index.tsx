@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { createLocationMenu } from "./data/locationMenu";
 import { MenuItemProps, LocationProps, DynamicMenuProps } from "@/types";
 
@@ -62,12 +62,18 @@ export default function DynamicMenu({
   };
 
   return (
-    <View>
+    <View className="flex w-full flex-col items-center justify-center">
       <Text>{menuTitle}</Text>
 
       {currentMenu.map((menuItem, index) => (
-        <TouchableOpacity key={index} onPress={() => handleMenuPress(menuItem)}>
-          <Text>{menuItem.label}</Text>
+        <TouchableOpacity
+          key={index}
+          onPress={() => handleMenuPress(menuItem)}
+          className="w-3/4 h-12 flex items-center justify-center bg-blue-200"
+        >
+          <Text className="text-center text-lg font-bold">
+            {menuItem.label}
+          </Text>
         </TouchableOpacity>
       ))}
 
@@ -79,3 +85,9 @@ export default function DynamicMenu({
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+  },
+});

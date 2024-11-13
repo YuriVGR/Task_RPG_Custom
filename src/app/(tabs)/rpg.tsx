@@ -13,11 +13,7 @@ export default function RPGScreen() {
   return (
     <SafeAreaView>
       <View style={styles.placeholder} />
-      {currentLocation && (
-        <View>
-          <Text>{currentLocation}</Text>
-        </View>
-      )}
+   
 
       {currentText && (
         <View>
