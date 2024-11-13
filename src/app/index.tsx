@@ -80,7 +80,3 @@ export default function WelcomeScreen() {
     </SafeAreaView>
   );
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> b402c7413e68b678b09b8695c9fff91eabf5783d
