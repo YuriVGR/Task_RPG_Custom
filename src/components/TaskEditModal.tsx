@@ -55,33 +55,3 @@ export default function TaskEditModal({
         </Modal>
     );
 }
-
-const styles = StyleSheet.create({
-    modalContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-    modalContent: {
-        backgroundColor: 'white',
-        padding: 20,
-        borderRadius: 10,
-        width: '80%',
-    },
-    input: {
-        borderBottomWidth: 1,
-        marginBottom: 10,
-        padding: 8,
-    },
-    picker: {
-        height: 50,
-        width: '100%',
-        marginBottom: 10,
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 20,
-    },
-});

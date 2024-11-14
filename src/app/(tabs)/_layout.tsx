@@ -10,14 +10,14 @@ export default function TabLayout() {
         headerShown: false,
       }}>
       <Tabs.Screen
-        name="index"
+        name="Home"
         options={{
           title: 'Inicio',
           tabBarIcon: () => <FontAwesome5 name="home" size={20} color="black" />,
         }}
       />
       <Tabs.Screen
-        name="rpg"
+        name="RPG"
         options={{
           title: 'RPG',
           tabBarIcon: () => <FontAwesome5 name="dungeon" size={20} color="black" />,
@@ -25,14 +25,14 @@ export default function TabLayout() {
         }}
       />
            <Tabs.Screen
-        name="task"
+        name="Task"
         options={{
           title: 'Tasks',
           tabBarIcon: () => <FontAwesome5 name="tasks" size={20} color="black" />,
         }}
       />
            <Tabs.Screen
-        name="settings"
+        name="Settings"
         options={{
           title: 'Configurações',
           tabBarIcon: () => <FontAwesome5 name="cog" size={20} color="black" />,

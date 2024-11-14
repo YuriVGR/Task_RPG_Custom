@@ -33,6 +33,3 @@ export default function RPGScreen() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-});
