@@ -16,32 +16,8 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import TaskCreateModal from "@/components/TaskCreateModal";
 
-const initialTasks = [
-    {
-        id: "1",
-        title: "Corrigir Botão de Login",
-        description:
-            "É preciso que quando cliente clique em login seja validado.",
-        status: 1,
-    },
-    {
-        id: "2",
-        title: "Criar Tela de Cadastro",
-        description:
-            "É preciso criar uma tela de cadastro para que os usuários possam se cadastrar na aplicação.",
-        status: 2,
-    },
-    {
-        id: "3",
-        title: "Criar Tela de Login",
-        description:
-            "É preciso criar uma tela de login para que os usuários possam se logar na aplicação.",
-        status: 3,
-    },
-];
-
 export default function TaskScreen() {
-    const [taskList, setTaskList] = useState<TaskProps[]>(initialTasks);
+    const [taskList, setTaskList] = useState<TaskProps[]>([]);
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const removeTask = (id: string) => {

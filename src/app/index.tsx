@@ -5,12 +5,13 @@ import {
   View,
   Text,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 
 const STORAGE_KEY = "firstTime";
-const TIMEOUT = 2250;
+const TIMEOUT = 2500;
 
 export default function WelcomeScreen() {
   const [isLoading, setIsLoading] = useState(true);
@@ -44,6 +45,18 @@ export default function WelcomeScreen() {
       console.error("Failed to save onboarding status:", e);
     }
   };
+
+  if (isLoading) {
+    return (
+      <SafeAreaView className="bg-black w-full h-full justify-center items-center">
+        <ActivityIndicator size="large" className="color-purple-500"/>
+      </SafeAreaView>
+    );
+  }
+
+  if (!isFirstTime) {
+    return null
+  }
 
   return (
     <SafeAreaView className="bg-black w-full h-full justify-center ">

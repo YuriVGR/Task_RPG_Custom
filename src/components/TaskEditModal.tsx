@@ -29,32 +29,24 @@ export default function TaskEditModal({
 
     return (
         <Modal visible={isVisible} animationType="slide" transparent={true}>
-            <View style={styles.modalContainer}>
-                <View style={styles.modalContent}>
+            <View className='flex justify-center items-center bg-blac/50'>
+                <View className='bg-white p-20 rounded-lg w-4/5'>
                     <Text>Editar Tarefa</Text>
                     <TextInput
                         placeholder="Título"
                         value={title}
                         onChangeText={setTitle}
-                        style={styles.input}
+                        className='p-8 w-full border-b-2'
                     />
                     <TextInput
                         placeholder="Descrição"
                         value={description}
                         onChangeText={setDescription}
-                        style={styles.input}
+                        className='p-8 w-full border-b-2'
                     />
                     <Text>Status</Text>
-                    <Picker
-                        selectedValue={status}
-                        onValueChange={(itemValue) => setStatus(itemValue)}
-                        style={styles.picker}
-                    >
-                        <Picker.Item label="Pendente" value={1} />
-                        <Picker.Item label="Cancelado" value={3} />
-                        <Picker.Item label="Concluído" value={2} />
-                    </Picker>
-                    <View style={styles.buttonContainer}>
+
+                    <View className='flex flew-row justify-between mt-20'>
                         <Button title="Salvar" onPress={handleEdit} />
                         <Button title="Cancelar" onPress={onClose} />
                     </View>
