@@ -40,7 +40,7 @@ export interface TaskEditModalProps {
   initialStatus: number;
 }
 
-// RPG Types
+// RPG Menu Types
 
 export interface RPGScreenProps {
   isVisible: boolean;
@@ -66,3 +66,32 @@ export interface DynamicMenuProps {
 }
 
 export type MenuSetter = (menu: MenuItemProps[], title: string) => void;
+
+// RPG Player Types
+
+export interface RPGInventoryProps {
+  label: string;
+  stats: {
+    hp?: number;
+    mp?: number;
+    atk?: number;
+    def?: number;
+    int?: number;
+    spd?: number;
+  }
+}
+
+export interface RPGPlayerProps {
+  name: string;
+  experience: number;
+  level: number;
+  currentStats: {
+    hp: number;
+    mp: number;
+    atk: number;
+    def: number;
+    int: number;
+    spd: number;
+  }
+  inventory: RPGInventoryProps[];
+}
